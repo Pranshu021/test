@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Document2</title>
+		
+		<script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="https://code.highcharts.com/highcharts.js"></script>
+		<script type="text/javascript" src="https://code.highcharts.com/modules/data.js"></script>
+	
+		<script type="text/javascript">
+		$(document).ready(function() {
+			
+			$.get('test.csv', function(csv) {
+			    $('#container').highcharts({
+			        chart: {
+			        	type: 'column'
+			        },
+			        data: {
+			            csv: csv
+			        },
+			        title: {
+						text: 'Fruit Consumption'
+					},
+					yAxis: {
+						title: {
+							text: 'Units'
+						}
+					}
+			    });
+			});
+			
+			
+		});
+		</script>
+		
+	</head>
+<body>
+    <div id="container" style="width: 800px; height: 400px; margin: 0 auto"></div>
+
+    </div>
+</body>
+</html>
