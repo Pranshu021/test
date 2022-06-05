@@ -10,14 +10,16 @@
 	
 		<script type="text/javascript">
 		$(document).ready(function() {
+			pollingRate = 10;
 			$.get('https://raw.githubusercontent.com/Pranshu021/test/main/test.csv', function(csv) {
-				
 			    $('#container').highcharts({
 			        chart: {
 			        	type: 'column'
 			        },
 			        data: {
-			            csv: csv
+			            csv: csv,
+						enablePolling: true,
+						dataRefreshRate: parseInt(pollingRate, 10)
 			        },
 			        title: {
 						text: 'Fruit Consumption'
@@ -29,8 +31,7 @@
 					}
 			    });
 			});
-			
-			
+
 		});
 		</script>
 		
@@ -38,6 +39,5 @@
 <body>
     <div id="container" style="width: 800px; height: 400px; margin: 0 auto"></div>
 
-    </div>
 </body>
 </html>
