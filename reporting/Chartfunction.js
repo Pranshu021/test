@@ -56,18 +56,7 @@ function Bar(BarTitle, BarSubtitle, XAxisTitle, YAxisTitle, YAxisTitlePosition, 
 
 function Line(LineTitle, LineSubTitle, YText, range, LineLayout, LineAlign, LineVerticalAlign, LineData, LineWidth, LegendLayout, LegendAlign, LegendverticalAlign, Linedataclassname, Linedatacolor, LineColorIndex, Linedatalabelenable, Linedatalabelinside, Linedatalabelsalign, Linedatalabelsformat, LineDraggableXaxis, LineDraggableYaxis, LinesortEnable, LinematchbyName, LinesortKey) {
 
-    var Linedataclassname = undefined
-    var Linedatacolor = undefined
-    var LineColorIndex = undefined
-    var Linedatalabelenable = true
-    var Linedatalabelinside = true
-    var Linedatalabelsalign = 'enabled'
-    var Linedatalabelsformat = undefined
-    var LineDraggableXaxis = undefined
-    var LineDraggableYaxis = undefined
-    var LinesortEnable = false
-    var LinematchbyName = undefined
-    var LinesortKey = 'y'
+    
     Highcharts.chart('containerLine', {
 
         title: {
@@ -141,38 +130,10 @@ function Line(LineTitle, LineSubTitle, YText, range, LineLayout, LineAlign, Line
 
 var valuePrefixsign = '%'
 
-function Pie(PieTitle, PieData, BackgroundColour, Borderwidth, ShadowPlot, ToolTipbackgroundColor, ToolTipBorderColor, ToolTipBorderRadius, ToolTipBorderWidth, ToolTipPointFormat, ToolTipClassName, valueSuffixsign, valueDecimalsno, allowpointselectV, deferV, datalabelenable, datalabelinside, datalabelsalign, datalabelsformat, clipPie, centerpie, piecolor, PieAnimationLimit, Piedataclassname, Piedatacolor, PieColorIndex, PieSeriesanimation, DraggableXaxis, DraggableYaxis) {
-    var BackgroundColour = '#FFFFF8'
-    var Borderwidth = null
-    var ShadowPlot = false
-    var ToolTipbackgroundColor = '#FCFFC5'
-    // var ToolTipBorderColor = '#000000'
-    var ToolTipBorderRadius = 1
-    var ToolTipBorderWidth = null
-    var ToolTipPointFormat = '{series.name}: <b>{point.percentage:.1f}%</b>'
-    var ToolTipClassName = undefined
-    var valueSuffixsign = '%'
-    var valuePrefixsign = '%'
-    var valueDecimalsno = 'undefined'
-    var allowpointselectV = true
-    var deferV = 0
-    var durationV = 100
-    var easingfunc = 'easeOutBounce'
-    var datalabelenable = true
-    var datalabelinside = true
-    var datalabelsalign = undefined
-    var clipPie = false
-    var centerpie = ["50%", "50%"]
-    var piecolor = '#c0ffee'
-    var PieAnimationLimit = Infinity
-    var Piedataclassname = undefined
-    var Piedatacolor = '#BF0B2'
-    var PieColorIndex = undefined
-    var PieSeriesanimation = undefined
-    var DraggableXaxis = undefined
-    var DraggableYaxis = undefined
+function Pie(PieTitle, PieData, BackgroundColour, Borderwidth, ShadowPlot, ToolTipbackgroundColor, ToolTipBorderColor, ToolTipBorderRadius, ToolTipBorderWidth, ToolTipPointFormat, ToolTipClassName, valueSuffixsign, valueDecimalsno, allowpointselectV, deferV, datalabelenable, datalabelinside, datalabelsalign, datalabelsformat, clipPie, centerpie, piecolor, PieAnimationLimit, Piedataclassname, Piedatacolor, PieColorIndex, PieSeriesanimation, DraggableXaxis, DraggableYaxis, durationV, easingfunc) {
+    
 
-    var datalabelsformat = undefined
+    
     Highcharts.chart('containerPie', {
         chart: {
             type: 'pie',
@@ -260,6 +221,48 @@ function Pie(PieTitle, PieData, BackgroundColour, Borderwidth, ShadowPlot, ToolT
     });
 
 }
+
+function dragElement(elmnt) {
+    var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    if (document.getElementById(elmnt.id + "header")) {
+      // if present, the header is where you move the DIV from:
+      document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+    } else {
+      // otherwise, move the DIV from anywhere inside the DIV:
+      elmnt.onmousedown = dragMouseDown;
+    }
+  
+    function dragMouseDown(e) {
+      e = e || window.event;
+      e.preventDefault();
+      // get the mouse cursor position at startup:
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      document.onmouseup = closeDragElement;
+      // call a function whenever the cursor moves:
+      document.onmousemove = elementDrag;
+    }
+  
+    function elementDrag(e) {
+      e = e || window.event;
+      e.preventDefault();
+      // calculate the new cursor position:
+      pos1 = pos3 - e.clientX;
+      pos2 = pos4 - e.clientY;
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      // set the element's new position:
+      elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+      elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+    }
+  
+    function closeDragElement() {
+      // stop moving when mouse button is released:
+      document.onmouseup = null;
+      document.onmousemove = null;
+    }
+  }
+
 
 // data: { //PieData
 //     colorAxis: {},
