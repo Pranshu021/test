@@ -11,15 +11,12 @@
     <script type="text/javascript" src="https://code.highcharts.com/modules/data.js"></script>
     <script src="Chartfunction.js"></script>
     <link rel="stylesheet" href="Chartfunction.css">
-
-
-
 </head>
 
 <body>
-    <div id="containerbar" style="width: 800px; height: 400px; margin: 0 auto"></div>
-    <div id="containerLine" style="width: 800px; height: 400px; margin: 0 auto"></div>
-    <div id="containerPie" style="width: 800px; height: 400px; margin: 0 auto"></div>
+    <div id="containerbar" style="width: 500px; height: 400px; margin: 0 auto; position: absolute"></div>
+    <div id="containerLine" style="width: 500px; height: 400px; margin: 0 auto; position: absolute"></div>
+    <div id="containerPie" style="width: 500px; height: 400px; margin: 0 auto; position: absolute"></div>
 
     <script>
         $(document).ready(function() {
@@ -31,6 +28,65 @@
             var LineLayout = 'vertical'
             var LineAlign = 'right'
             var LineVerticalAlign = 'middle'
+            var BackgroundColour = '#FFFFF8'
+            var Borderwidth = null
+            var ShadowPlot = false
+            var ToolTipbackgroundColor = '#FCFFC5'
+            var ToolTipBorderColor = '#000000'
+            var ToolTipBorderRadius = 1
+            var ToolTipBorderWidth = null
+            var ToolTipPointFormat = '{series.name}: <b>{point.percentage:.1f}%</b>'
+            var ToolTipClassName = undefined
+            var valueSuffixsign = '%'
+            var valuePrefixsign = '%'
+            var valueDecimalsno = 'undefined'
+            var allowpointselectV = true
+            var deferV = 0
+            var durationV = 100
+            var easingfunc = 'easeOutBounce'
+            var datalabelenable = true
+            var datalabelinside = true
+            var datalabelsalign = undefined
+            var clipPie = false
+            var centerpie = ["50%", "50%"]
+            var piecolor = '#c0ffee'
+            var PieAnimationLimit = Infinity
+            var Piedataclassname = undefined
+            var Piedatacolor = '#BF0B2'
+            var PieColorIndex = undefined
+            var PieSeriesanimation = undefined
+            var DraggableXaxis = undefined
+            var DraggableYaxis = undefined
+            var LineWidth = '20'
+            var LegendLayout = 'horizontal'
+            var LegendAlign = 'center'
+            var LegendverticalAlign = 'bottom'
+            var XAxisTitle = ['Africa', 'America', 'Asia', 'Europe', 'Oceania']
+            var YAxisTitle = 'Population (millions)'
+            var YAxisTitlePosition = 'high'
+            var LegendLayout = 'vertical'
+            var LegendAlign = 'right'
+            var LegendVerticalAlign = 'top'
+            var LegendXpoint = -40
+            var LegendYpoint = 80
+            var Linedataclassname = undefined
+            var Linedatacolor = undefined
+            var LineColorIndex = undefined
+            var Linedatalabelenable = true
+            var Linedatalabelinside = true
+            var Linedatalabelsalign = 'enabled'
+            var Linedatalabelsformat = undefined
+            var LineDraggableXaxis = undefined
+            var LineDraggableYaxis = undefined
+            var LinesortEnable = false
+            var LinematchbyName = undefined
+            var LinesortKey = 'y'
+            var datalabelsformat = undefined
+            var BarTitle = 'Historic World Population by Region'
+            var BarSubtitle = 'Source: <a href="https://en.wikipedia.org/wiki/World_population">Wikipedia.org</a>'
+            var PieTitle = 'Browser market shares in January, 2018'
+
+
 
             var LineData = [{
                 name: 'Installation',
@@ -48,22 +104,7 @@
                 name: 'Other',
                 data: [12908, 5948, 8105, 11248, 8989, 11816, 18274, 18111]
             }]
-            var LineWidth = '20'
-            var LegendLayout = 'horizontal'
-            var LegendAlign = 'center'
-            var LegendverticalAlign = 'bottom'
-
-
-            var BarTitle = 'Historic World Population by Region'
-            var BarSubtitle = 'Source: <a href="https://en.wikipedia.org/wiki/World_population">Wikipedia.org</a>'
-            var XAxisTitle = ['Africa', 'America', 'Asia', 'Europe', 'Oceania']
-            var YAxisTitle = 'Population (millions)'
-            var YAxisTitlePosition = 'high'
-            var LegendLayout = 'vertical'
-            var LegendAlign = 'right'
-            var LegendVerticalAlign = 'top'
-            var LegendXpoint = -40
-            var LegendYpoint = 80
+            
             var SeriesData = [{
                 name: 'Year 1800',
                 data: [107, 31, 635, 203, 2]
@@ -78,8 +119,6 @@
                 data: [1216, 1001, 4436, 738, 40]
             }]
 
-
-            var PieTitle = 'Browser market shares in January, 2018'
             var PieData = [{
                 name: 'Chrome',
                 y: 61.41,
@@ -112,10 +151,15 @@
             }]
 
 
-            Pie(PieTitle, PieData)
+            Pie(PieTitle, PieData, BackgroundColour, Borderwidth, ShadowPlot, ToolTipbackgroundColor, ToolTipBorderColor, ToolTipBorderRadius, ToolTipBorderWidth, ToolTipPointFormat, ToolTipClassName, valueSuffixsign, valueDecimalsno, allowpointselectV, deferV, datalabelenable, datalabelinside, datalabelsalign, datalabelsformat, clipPie, centerpie, piecolor, PieAnimationLimit, Piedataclassname, Piedatacolor, PieColorIndex, PieSeriesanimation, DraggableXaxis, DraggableYaxis, easingfunc)
             
-            Line(LineTitle, LineSubTitle, YText, range, LineLayout, LineAlign, LineVerticalAlign, LineData, LineWidth, LegendLayout, LegendAlign, LegendverticalAlign)
+            Line(LineTitle, LineSubTitle, YText, range, LineLayout, LineAlign, LineVerticalAlign, LineData, LineWidth, LegendLayout, LegendAlign, LegendverticalAlign, LineWidth, LegendLayout, LegendAlign, LegendverticalAlign, Linedataclassname, Linedatacolor, LineColorIndex)
+
             Bar(BarTitle, BarSubtitle, XAxisTitle, YAxisTitle, YAxisTitlePosition, YAxisTitlePosition, LegendLayout, LegendAlign, LegendVerticalAlign, LegendXpoint, LegendYpoint, SeriesData)
+            dragElement(document.getElementById("containerPie"));
+            dragElement(document.getElementById("containerbar"));
+            dragElement(document.getElementById("containerLine"));
+
 
         });
     </script>
